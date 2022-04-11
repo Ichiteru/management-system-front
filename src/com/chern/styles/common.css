@@ -1,0 +1,9 @@
+body, html {
+    height: 125%;
+    background-repeat: repeat;
+    background-image: linear-gradient(rgb(197, 215, 222), rgb(136, 164, 169));
+}
+
+.invalid-field-input{
+    color: red;
+}

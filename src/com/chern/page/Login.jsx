@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import './../styles/login.css';
+import './../styles/common.css';
 import AuthenticationService from "../service/AuthenticationService";
 import {AuthContext} from "../context/AuthContext";
 import {useNavigate} from "react-router-dom";
@@ -48,7 +49,7 @@ const Login = ({setRole}) => {
                         onChange={(event => setCredentials({...credentials, password: event.target.value}))}
                         type="password" className="form-control" placeholder="Password" id="inputPassword"/>
                     <button onClick={login} className="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>
-                    <button className="btn btn-lg btn-primary btn-block btn-signup">Sign up</button>
+                    <button onClick={() => {route('/registration')}} className="btn btn-lg btn-primary btn-block btn-signup">Sign up</button>
                 </div>
 
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
+import {MS_API_URL} from "./CommonService";
 
-const MS_API_URL = 'http://localhost:8080/api'
 let TOKEN = ''
 export const TOKEN_KEY = 'token'
 export const LOGGED_USER_ROLE_KEY = 'role'

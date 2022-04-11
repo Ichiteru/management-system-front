@@ -4,6 +4,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import Logout from "../page/Logout";
 import Login from "../page/Login";
 import {privateRoutes} from "./routes";
+import Registration from "../page/Registration";
 
 const AppRouter = ({setRole}) => {
 
@@ -39,6 +40,14 @@ const AppRouter = ({setRole}) => {
                     exact={true}
                     key={'/login'}>
                 </Route>
+
+                <Route
+                    element={<Registration/>}
+                    path={'/registration'}
+                    exact={true}
+                    key={'/registration'}>
+                </Route>
+
                 <Route path='/*' element={<Navigate to='/login'/>}/>
             </Routes>
 
