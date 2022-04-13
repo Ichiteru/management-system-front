@@ -8,12 +8,19 @@ let config;
 export default class UserService {
 
 
-    static async getAll() {
+    static async getAll(filter,page, size) {
         config = {
             method: 'get',
             url: MS_API_URL + '/employees',
             headers: {
                 Authorization: sessionStorage.getItem(TOKEN_KEY)
+            },
+            params: {
+                filterInactive: filter.showOnlyActive,
+                orderByNameAndSurname: filter.sortByInitials,
+                username: filter.searchByUsername,
+                page: page - 1,
+                size: size
             }
         }
         return axios(config)
