@@ -1,10 +1,12 @@
 import Profile from "../page/Profile";
 import Users from "../page/Users";
 import CompanyManagement from "../page/CompanyManagement";
+import ResumesPage from "../page/ResumesPage";
 
 export const privateRoutes = [
     {path: "/profile", element: <Profile/>, exact: true},
     {path: "/users", element: <Users/>, exact: true},
+    {path: "/resumes", element: <ResumesPage/>, exact: true},
     {path: "/companies", element: <CompanyManagement/>, exact: true}
 ]
 
