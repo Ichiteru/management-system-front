@@ -48,7 +48,7 @@ const AppRouter = ({setRole}) => {
                     key={'/registration'}>
                 </Route>
 
-                <Route path='/*' element={<Navigate to='/login'/>}/>
+                {/*<Route path='/*' element={<Navigate to={}/>}/>*/}
             </Routes>
 
     );

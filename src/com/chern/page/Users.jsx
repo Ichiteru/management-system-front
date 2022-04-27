@@ -21,7 +21,6 @@ const Users = () => {
     const [filter, setFilter] = useState({searchByUsername: '', showOnlyActive: false, sortByInitials: false})
 
     useEffect(() => {
-        console.log("useEffect works")
         fetchUsers(filter, page, limit);
     }, [filter, page])
 
