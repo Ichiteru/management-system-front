@@ -2,7 +2,7 @@ import React from 'react';
 import UserRow from "../user/UserRow";
 import VacancyRow from "./VacancyRow";
 
-const VacancyTable = ({vacancies, role}) => {
+const VacancyTable = ({vacancies, role, update, remove, view}) => {
     return (
         <table className="table table-hover">
             <thead>
@@ -18,7 +18,7 @@ const VacancyTable = ({vacancies, role}) => {
             <tbody>
             {
                 vacancies.map(vacancy =>
-                    <VacancyRow role={role} vacancy={vacancy} key={vacancy.id}/>
+                    <VacancyRow role={role} vacancy={vacancy} key={vacancy.id} openUpdate={update} remove={remove} view={view}/>
                 )
             }
             </tbody>

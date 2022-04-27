@@ -25,7 +25,6 @@ const Navbar = ({role}) => {
                     <li><Link className="nav-link" to="/vacancies">Vacancies</Link></li>
                     <li><Link className="nav-link" to="/company">Company info</Link></li>
                     <li><Link className="nav-link" to="/applications">Applications</Link></li>
-                    <li><Link className="nav-link" to="/dispatcherWriteOffs">Write-off acts</Link></li>
                 </ul>
             case 'ROLE_EMPLOYEE':
                 return <ul className="navbar-nav">

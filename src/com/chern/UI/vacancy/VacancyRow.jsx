@@ -8,12 +8,14 @@ const VacancyRow = (props) => {
     }
 
     return (
-        <tr onClick={(e) => {
-            props.role == 'ROLE_MANAGER' ?
-                openVacancyApplicationsPage() : console.log('click for employee')
-        }
-
-        }>
+        <tr
+        //     onClick={(e) => {
+        //     props.role == 'ROLE_MANAGER' ?
+        //         openVacancyApplicationsPage() : console.log('click for employee')
+        // }
+        //
+        // }
+        >
             <td scope="col">{props.vacancy.id}</td>
             <td scope="col">{props.vacancy.post}</td>
             <td scope="col">{props.vacancy.suggestedSalary} BYN</td>
@@ -23,7 +25,7 @@ const VacancyRow = (props) => {
                 {
                     props.role == 'ROLE_EMPLOYEE' ?
                         <a
-                            // onClick={() => props.changeStatus(props.user.id, props.user.status)}
+                            onClick={() => {props.view(props.vacancy.id)}}
                             id='a-change-status' className='link-primary'>
                             <small>Send application</small>
                         </a>
@@ -31,14 +33,14 @@ const VacancyRow = (props) => {
                         <div className='row row-cols-2'>
                             <div className="col">
                                 <a
-                                    // onClick={() => props.changeStatus(props.user.id, props.user.status)}
+                                    onClick={() => {props.openUpdate(props.vacancy.id)}}
                                     id='a-change-status' className='link-success'>
                                     <small>Update</small>
                                 </a>
                             </div>
                             <div className="col-6">
                                 <a
-                                    // onClick={() => props.changeStatus(props.user.id, props.user.status)}
+                                    onClick={() => {props.remove(props.vacancy.id)}}
                                     id='a-change-status' className='link-danger'>
                                     <small>Remove</small>
                                 </a>
