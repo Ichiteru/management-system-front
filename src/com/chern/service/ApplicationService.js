@@ -22,4 +22,20 @@ export default class ApplicationService {
         }
         return axios(config);
     }
+
+    static async getAll(page, limit) {
+        console.log('works')
+        config = {
+            method: 'get',
+            url: MS_API_URL + "/applications",
+            headers: {
+                Authorization: sessionStorage.getItem(TOKEN_KEY)
+            },
+            params:{
+                page:page-1,
+                size:limit
+            }
+        }
+        return axios(config);
+    }
 }

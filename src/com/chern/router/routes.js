@@ -4,6 +4,7 @@ import CompanyManagement from "../page/CompanyManagement";
 import ResumesPage from "../page/ResumesPage";
 import VacanciesPage from "../page/VacanciesPage";
 import VacancyApplicationsPage from "../page/VacancyApplicationsPage";
+import ApplicationPage from "../page/ApplicationPage";
 
 export const privateRoutes = [
     {path: "/profile", element: <Profile/>, exact: true},
@@ -11,7 +12,8 @@ export const privateRoutes = [
     {path: "/resumes", element: <ResumesPage/>, exact: true},
     {path: "/companies", element: <CompanyManagement/>, exact: true},
     {path: "/vacancies", element: <VacanciesPage/>, exact: true},
-    {path: "/applications/:id", element: <VacancyApplicationsPage/>, exact: true}
+    {path: "/applications/:id", element: <VacancyApplicationsPage/>, exact: true},
+    {path: "/applications", element: <ApplicationPage/>, exact: true}
 ]
 
 export default function getDefaultRoleRoute(role){
