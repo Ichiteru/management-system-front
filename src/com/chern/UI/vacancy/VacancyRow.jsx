@@ -1,10 +1,16 @@
 import React from 'react';
 import {STATUS_ACTIVE} from "../../service/CommonService";
+import VacancyApplicationsPage from "../../page/VacancyApplicationsPage";
+import {Link, useNavigate} from "react-router-dom";
 
 const VacancyRow = (props) => {
 
+    const route = useNavigate();
+
     function openVacancyApplicationsPage() {
         console.log('open vacancy applications page')
+        route('/applications/' + props.vacancy.id)
+        // return (<VacancyApplicationsPage vacancyId={props.vacancy.id}/>);
     }
 
     return (
@@ -45,6 +51,13 @@ const VacancyRow = (props) => {
                                     <small>Remove</small>
                                 </a>
                             </div>
+                            <div className='col'>
+
+                            </div><a
+                            onClick={() => {openVacancyApplicationsPage()}}
+                            id='a-change-status' className='link-primary'>
+                            <small>Заявки</small>
+                        </a>
                         </div>
                 }
             </td>

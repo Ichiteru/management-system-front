@@ -42,7 +42,6 @@ const VacanciesPage = () => {
 
     function openSendApplicationModal(id){
         setUpdatedId(id)
-        setScope('')
         setScope(VIEW_SCOPE)
         setModal(true)
     }

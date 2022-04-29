@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Skill from "../resume/Skill";
 import VacancyService from "../../service/VacancyService";
-import {ADD_SCOPE, UPDATE_SCOPE, VIEW_SCOPE} from "../../service/CommonService";
+import {ADD_SCOPE, APPLICATION, UPDATE_SCOPE, VIEW_SCOPE} from "../../service/CommonService";
+import ResumeService from "../../service/ResumeService";
+import ApplicationService from "../../service/ApplicationService";
 
 const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
 
@@ -9,6 +11,8 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
     const [vacancy, setVacancy] = useState({});
     const [errors, setErrors] = useState({});
     const [formError, setFormError] = useState(false)
+    const [employeeResumes, setEmployeeResumes] = useState([]);
+    const [selectedResume, setSelectedResume] = useState(-1);
 
     useEffect(() => {
         if (scope == ADD_SCOPE) {
@@ -25,6 +29,12 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
                 })
                 setRequirements([...temp.requirements])
                 // setVacancy(resp.data)
+            })
+            ResumeService.getAll(1, 100, '').then(resp => {
+                setEmployeeResumes(resp.data)
+                setFormError(false)
+            }).catch(err => {
+                setFormError('Ошибка при загрузке резюме')
             })
         }
     }, [scope, id])
@@ -96,8 +106,25 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
         }
     }
 
-    function sendApplication(e){
+    let selResume = useMemo(() => {
+        console.log(selectedResume)
+        return selectedResume
+    }, [selectedResume])
+
+    function sendApplication(e) {
         e.preventDefault()
+        if (selResume == -1){
+            setFormError('Выберите резюме')
+        } else {
+            console.log('vacancy id = ' + id)
+            ApplicationService.send(selResume, id, APPLICATION).then(resp =>{
+                setModal(false);
+                setSuccessMsg('Заявка была успешно отправлена')
+            }).catch(err => {
+                setFormError('Ошибка при отправке заявки. Попробуйте снова.')
+                setSuccessMsg(false)
+            })
+        }
     }
 
     return (
@@ -157,6 +184,26 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
                             </div>
                     }
                 </div>
+                {
+                    scope == VIEW_SCOPE &&
+                    <div className='row m-1 mb-4'>
+                        <div className="col">
+                            <label htmlFor="recipient-name" className="col-form-label">Выберите резюме:</label>
+                        </div>
+                        <div className='col'>
+                            <select className='form-select'
+                                    onChange={(e) => {
+                                        setSelectedResume(e.target.value);
+                                    }}>
+                                <option disabled={true} selected={true} value={-1}>Выберите резюме</option>
+                                {
+                                    employeeResumes.map(r =>
+                                        <option key={r.id} value={r.id}>{r.name}</option>)
+                                }
+                            </select>
+                        </div>
+                    </div>
+                }
 
                 <div className="row m-1 mb-4">
                     <div className="col-sm-4">
@@ -165,11 +212,11 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
                     <div className="col-sm-8 mb-2 ">
                         {
                             scope != VIEW_SCOPE &&
-                        <button className='btn btn-success btn-sm float-end'
-                                onClick={(e) => {
-                                    addRequirement(e)
-                                }}> Добавить требование
-                        </button>
+                            <button className='btn btn-success btn-sm float-end'
+                                    onClick={(e) => {
+                                        addRequirement(e)
+                                    }}> Добавить требование
+                            </button>
                         }
                     </div>
                     <div className="row m-1 mb-4 ">
@@ -185,17 +232,18 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
                     </div>
                 </div>
 
+
                 <hr/>
 
                 <div className='row justify-content-center m-3'>
                     <button
                         onClick={(e) => {
-                            if (scope == ADD_SCOPE){
-                               create(e)
-                            } else if (scope == UPDATE_SCOPE){
-                               update(e)
+                            if (scope == ADD_SCOPE) {
+                                create(e)
+                            } else if (scope == UPDATE_SCOPE) {
+                                update(e)
                             } else {
-                               sendApplication(e)
+                                sendApplication(e)
                             }
                         }}
                         className='btn btn-success'>
