@@ -2,7 +2,7 @@ import React from 'react';
 import UserRow from "../user/UserRow";
 import ApplicationRow from "./ApplicationRow";
 
-const ApplicationTable = ({applications}) => {
+const ApplicationTable = ({applications, feedback, openInfo, remove}) => {
     return (
         <table className="table table-hover">
             <thead>
@@ -20,7 +20,7 @@ const ApplicationTable = ({applications}) => {
             <tbody>
             {
                 applications.map(app =>
-                    <ApplicationRow key={app.id} application={app}/>
+                    <ApplicationRow key={app.id} application={app} feedback={feedback} openInfo={openInfo} remove={remove}/>
                 )
             }
             </tbody>

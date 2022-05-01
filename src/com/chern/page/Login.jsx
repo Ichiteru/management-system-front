@@ -43,13 +43,13 @@ const Login = ({setRole}) => {
                     <input
                         value={credentials.username}
                         onChange={(e) => setCredentials({...credentials, username: e.target.value})}
-                        type="email" id="inputEmail" className="form-control" placeholder="Email address"/>
+                        type="email" id="inputEmail" className="form-control" placeholder="Почта"/>
                     <input
                         value={credentials.password}
                         onChange={(event => setCredentials({...credentials, password: event.target.value}))}
-                        type="password" className="form-control" placeholder="Password" id="inputPassword"/>
-                    <button onClick={login} className="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>
-                    <button onClick={() => {route('/registration')}} className="btn btn-lg btn-primary btn-block btn-signup">Sign up</button>
+                        type="password" className="form-control" placeholder="Пароль" id="inputPassword"/>
+                    <button onClick={login} className="btn btn-lg btn-primary btn-block btn-signin">Войти</button>
+                    <button onClick={() => {route('/registration')}} className="btn btn-lg btn-primary btn-block btn-signup">Зарегестрироваться</button>
                 </div>
 
             </div>

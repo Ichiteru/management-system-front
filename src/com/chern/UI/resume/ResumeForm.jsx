@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import Skill from "./Skill";
 import ResumeService from "../../service/ResumeService";
+import {ADD_SCOPE, UPDATE_SCOPE, VIEW_SCOPE} from "../../service/CommonService";
 
 const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updatedResume}) => {
 
@@ -10,15 +11,15 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if (scope == 'add') {
+        if (scope == ADD_SCOPE) {
             setResume({name: '', descriptions: '', skills: []})
             setSkills([])
         }
-        if (scope == 'update') {
+        if (scope == UPDATE_SCOPE || scope == VIEW_SCOPE) {
             setResume({id: updatedResume.id, name: updatedResume.name, descriptions: updatedResume.descriptions})
-            setSkills(updatedResume.skills)
+            setSkills(updatedResume.skills ? updatedResume.skills : [])
         }
-    }, [scope])
+    }, [scope, updatedResume])
 
     function removeSkill(index) {
         setSkills(skills.filter(skill => skills.indexOf(skill) !== index))
@@ -52,12 +53,12 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
                 .then(resp => {
                     completeModalAndBackToPage('Резюме успешно добавлено.')
                 }).catch(err => {
-                    handleErrorResponse(err,'Ошибка при создании резюме. Проверьте введенные данные')
+                handleErrorResponse(err, 'Ошибка при создании резюме. Проверьте введенные данные')
             })
         }
     }
 
-    function handleErrorResponse(err,errMessage) {
+    function handleErrorResponse(err, errMessage) {
         setPageError(errMessage)
         setFormError(false)
         setMessage(false)
@@ -89,7 +90,7 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
             ResumeService.update(tempResume).then(resp => {
                 completeModalAndBackToPage('Резюме было успешно обновлено');
             }).catch(err => {
-               handleErrorResponse(err,'Ошибка при обновлении резюме. Проверьте введенные данные')
+                handleErrorResponse(err, 'Ошибка при обновлении резюме. Проверьте введенные данные')
             })
         }
     }
@@ -105,7 +106,7 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
         <form className='container'>
             <div className='col'>
                 <div className="row">
-                    <h1 className='text-center'>Создание резюме</h1>
+                    <h1 className='text-center'>{scope == ADD_SCOPE ? 'Создание резюме' : 'Резюме'}</h1>
                 </div>
                 <hr/>
                 {
@@ -117,13 +118,16 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
                         </label>
                     </div>
                     <div className="col">
-                        <input className='input input-group form-control'
-                               onChange={(e) => {
-                                   setResume({...resume, name: e.target.value})
-                               }}
-                               style={errors.name ? {borderColor: "red"} : {borderColor: "gray"}}
-                               value={resume.name}
-                        ></input>
+                        {
+                            scope == VIEW_SCOPE ? <big>{resume.name}</big> :
+                                <input className='input input-group form-control'
+                                       onChange={(e) => {
+                                           setResume({...resume, name: e.target.value})
+                                       }}
+                                       style={errors.name ? {borderColor: "red"} : {borderColor: "gray"}}
+                                       value={resume.name}
+                                ></input>
+                        }
                         <small className="invalid-field-input">{errors.name}</small>
                     </div>
                 </div>
@@ -133,7 +137,8 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
                         <label htmlFor="recipient-name" className="col-form-label">Описание:</label>
                     </div>
                     <div className="col col-sm-12">
-                        <textarea maxLength='200' className='input input-group form-control'
+                        <textarea disabled={scope == VIEW_SCOPE ? true : false} maxLength='200'
+                                  className='input input-group form-control'
                                   onChange={(e) => {
                                       setResume({...resume, descriptions: e.target.value})
                                   }}
@@ -149,18 +154,21 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
                         <label htmlFor="recipient-name" className="col-form-label">Навыки/умения:</label>
                     </div>
                     <div className="col-sm-8 mb-2 ">
-                        <button className='btn btn-success btn-sm float-end'
-                                onClick={(e) => {
-                                    addSkill(e)
-                                }}>Добавить навык
-                        </button>
+                        {
+                            scope != VIEW_SCOPE &&
+                            <button className='btn btn-success btn-sm float-end'
+                                    onClick={(e) => {
+                                        addSkill(e)
+                                    }}>Добавить навык
+                            </button>
+                        }
                     </div>
                     <div className="row m-1 mb-4 ">
                         <ul className="list-group list-group-flush p-0">
                             {
                                 skills.map(skill =>
                                     <Skill key={skills.indexOf(skill)} skills={skills} setSkills={setSkills}
-                                           skill={skill} removeSkill={removeSkill}/>
+                                           skill={skill} removeSkill={removeSkill} scope={scope}/>
                                 )
                             }
                         </ul>
@@ -170,13 +178,19 @@ const ResumeForm = ({scope, setChange, setModal, setPageError, setMessage, updat
                 <hr/>
 
                 <div className='row justify-content-center m-3'>
-                    <button
-                        onClick={(e) => {
-                            scope == 'add' ? create(e) : update(e)
-                        }}
-                        className='btn btn-success'>
-                        Отправить
-                    </button>
+                    {
+                        scope != VIEW_SCOPE ?
+                            <button
+                                onClick={(e) => {
+                                    scope == ADD_SCOPE ? create(e) : update(e)
+                                }}
+                                className='btn btn-success'>
+                                Отправить
+                            </button> :
+                            <button className='btn btn-primary'>
+                                Закрыть
+                            </button>
+                    }
                 </div>
             </div>
         </form>

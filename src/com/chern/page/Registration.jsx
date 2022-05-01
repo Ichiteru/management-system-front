@@ -43,12 +43,12 @@ const Registration = () => {
                         <div className="col-12 col-md-9 col-lg-7 col-xl-6">
                             <div className="card">
                                 <div className="card-body p-5">
-                                    <h2 className="text-uppercase text-center mb-5">Create an account</h2>
+                                    <h2 className="text-uppercase text-center mb-5">Создание аккаунта</h2>
 
                                     <form>
 
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example1cg">Your Name</label>
+                                            <label className="form-label" htmlFor="form3Example1cg">Имя</label>
                                             <input type="text" id="form3Example1cg"
                                                    onChange={(e) => {setInfo({...info, name: e.target.value})}}
                                                    className="form-control form-control-lg"
@@ -58,7 +58,7 @@ const Registration = () => {
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example7cg">Your Surname</label>
+                                            <label className="form-label" htmlFor="form3Example7cg">Фамилия</label>
                                             <input  id="form3Example7cg"
                                                     onChange={(e) => {setInfo({...info, surname: e.target.value})}}
                                                    className="form-control form-control-lg"
@@ -68,7 +68,7 @@ const Registration = () => {
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example8cg">Your Username</label>
+                                            <label className="form-label" htmlFor="form3Example8cg">Имя пользователя</label>
                                             <input  id="form3Example8cg"
                                                    onChange={(e) => {setInfo({...info, username: e.target.value})}}
                                                    className="form-control form-control-lg"
@@ -78,7 +78,7 @@ const Registration = () => {
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example3cg">Your Email</label>
+                                            <label className="form-label" htmlFor="form3Example3cg">Почта</label>
                                             <input type="email" id="form3Example3cg"
                                                    onChange={(e) => {setInfo({...info, email: e.target.value})}}
                                                    className="form-control form-control-lg"
@@ -88,7 +88,7 @@ const Registration = () => {
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example4cg">Password</label>
+                                            <label className="form-label" htmlFor="form3Example4cg">Пароль</label>
                                             <input type="password" id="form3Example4cg"
                                                    onChange={(e) => {setInfo({...info, password: e.target.value})}}
                                                    className="form-control form-control-lg"
@@ -98,8 +98,7 @@ const Registration = () => {
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <label className="form-label" htmlFor="form3Example4cdg">Repeat your
-                                                password</label>
+                                            <label className="form-label" htmlFor="form3Example4cdg">Повторение пароля</label>
                                             <input type="password" id="form3Example4cdg"
                                                    onChange={(e) => { setRepeatPassword(e.target.value)}}
                                                    className="form-control form-control-lg"
@@ -110,14 +109,14 @@ const Registration = () => {
 
                                         <div className="d-flex justify-content-center">
                                             <button type="button"
-                                                    className="btn btn-lg btn-primary btn-block btn-signup w-50 h-200"
+                                                    className="btn btn-lg btn-primary btn-signup w-50 h-300"
                                                     onClick={registration}
-                                            >Register
+                                            >Зарегестрироваться
                                             </button>
                                         </div>
 
-                                        <p className="text-center text-muted mt-5 mb-0">Have already an account? <a
-                                            href="#!" className="fw-bold text-body"><u onClick={()=>{route('/login')}}>Login here</u></a></p>
+                                        <p className="text-center text-muted mt-5 mb-0">Уже есть аккаунт? <a
+                                            href="#!" className="fw-bold text-body"><u onClick={()=>{route('/login')}}>Войдите тут</u></a></p>
 
                                     </form>
 

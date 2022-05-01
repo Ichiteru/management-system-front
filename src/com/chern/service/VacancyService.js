@@ -22,6 +22,18 @@ export default class VacancyService {
         return axios(config)
     }
 
+    static async getChart(){
+        config = {
+            method: 'get',
+            url: MS_API_URL + '/vacancies/chart',
+            headers: {
+                Authorization : sessionStorage.getItem(TOKEN_KEY)
+            }
+
+        }
+        return axios(config)
+    }
+
     static async getById(id){
         config = {
             method: 'get',

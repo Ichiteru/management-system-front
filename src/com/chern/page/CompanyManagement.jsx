@@ -22,7 +22,7 @@ const CompanyManagement = () => {
     const [deleteError, setDeleteError] = useState(false)
     const [fetchCompanies, isLoading, error] = useFetching(async (page, limit, searchByName)  => {
         let response = await CompanyService.getAll(page, limit, searchByName);
-        setTotalPages(getPageCount(response.headers["total-count"], limit))
+        setTotalPages(response.headers["total-count"])
         setCompanies(response.data);
     })
 

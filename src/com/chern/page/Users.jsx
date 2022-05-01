@@ -15,7 +15,7 @@ const Users = () => {
     const [limit] = useState(10);
     const [fetchUsers, isUsersLoading, userError] = useFetching( async (filter, page, limit) => {
         let response = await UserService.getAll(filter, page, limit);
-        setTotalPages(getPageCount(response.headers["total-count"], limit))
+        setTotalPages(response.headers["total-count"])
         setUsers(response.data);
     })
     const [filter, setFilter] = useState({searchByUsername: '', showOnlyActive: false, sortByInitials: false})
@@ -26,7 +26,7 @@ const Users = () => {
 
     function changeStatus(id, status){
         UserService.changeStatus(id, getChangedStatus(status)).then(resp => {
-           fetchUsers(filter)
+           fetchUsers(filter,page,limit)
         }).catch(err => {
             console.log(err)
         })

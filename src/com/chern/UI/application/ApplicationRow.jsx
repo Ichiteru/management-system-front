@@ -29,7 +29,7 @@ const ApplicationRow = (props) => {
                 {
                     currentUserRole == 'ROLE_EMPLOYEE' &&
                     <button
-                        // onClick={() => props.changeStatus(props.user.id, props.user.status)}
+                        onClick={() => props.remove(props.application.id)}
                         id='a-change-status' className='btn btn-danger'>
                         <small>Удалить</small>
                     </button>
@@ -38,18 +38,19 @@ const ApplicationRow = (props) => {
                     currentUserRole == 'ROLE_MANAGER' && props.application.applicationStatus == 'POSTED' &&
                     <div>
                         <button
-                            // onClick={() => props.changeStatus(props.user.id, props.user.status)}
-                            id='a-change-status' className='btn btn-success'>
+                            id='a-change-status' className='btn btn-success'
+                            onClick={(e) => {props.feedback(props.application.id, STATUS_ACCEPTED)}}>
                             <small>Принять</small>
                         </button>
                         <button
-                            // onClick={() => props.changeStatus(props.user.id, props.user.status)}
-                            id='a-change-status' className='btn btn-danger mx-1'>
+                            id='a-change-status' className='btn btn-danger mx-1'
+                            onClick={(e) => {props.feedback(props.application.id, STATUS_REJECTED)}}>
                             <small>Отклонить</small>
                         </button>
                         <button
                             // onClick={() => props.changeStatus(props.user.id, props.user.status)}
-                            id='a-change-status' className='btn btn-primary mx-1'>
+                            id='a-change-status' className='btn btn-primary mx-1'
+                            onClick={(e) => {props.openInfo(props.application.resumeId)}}>
                             <small>Подробнее</small>
                         </button>
                     </div>

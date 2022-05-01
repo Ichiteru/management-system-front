@@ -8,19 +8,12 @@ const VacancyRow = (props) => {
     const route = useNavigate();
 
     function openVacancyApplicationsPage() {
-        console.log('open vacancy applications page')
         route('/applications/' + props.vacancy.id)
-        // return (<VacancyApplicationsPage vacancyId={props.vacancy.id}/>);
     }
 
     return (
         <tr
-        //     onClick={(e) => {
-        //     props.role == 'ROLE_MANAGER' ?
-        //         openVacancyApplicationsPage() : console.log('click for employee')
-        // }
-        //
-        // }
+
         >
             <td scope="col">{props.vacancy.id}</td>
             <td scope="col">{props.vacancy.post}</td>
@@ -31,33 +24,39 @@ const VacancyRow = (props) => {
                 {
                     props.role == 'ROLE_EMPLOYEE' ?
                         <a
-                            onClick={() => {props.view(props.vacancy.id)}}
+                            onClick={() => {
+                                props.view(props.vacancy.id)
+                            }}
                             id='a-change-status' className='link-primary'>
                             <small>Send application</small>
                         </a>
                         :
-                        <div className='row row-cols-2'>
-                            <div className="col">
-                                <a
-                                    onClick={() => {props.openUpdate(props.vacancy.id)}}
-                                    id='a-change-status' className='link-success'>
+                        <div className='row row-cols-3'>
+                            {/*<div className="col">*/}
+                                <button
+                                    onClick={() => {
+                                        props.openUpdate(props.vacancy.id)
+                                    }}
+                                    id='a-change-status' className='btn btn-success m-1'>
                                     <small>Update</small>
-                                </a>
-                            </div>
-                            <div className="col-6">
-                                <a
-                                    onClick={() => {props.remove(props.vacancy.id)}}
-                                    id='a-change-status' className='link-danger'>
+                                </button>
+                            {/*</div>*/}
+                            {/*<div className="col-6">*/}
+                                <button
+                                    onClick={() => {
+                                        props.remove(props.vacancy.id)
+                                    }}
+                                    id='a-change-status' className='btn btn-danger m-1'>
                                     <small>Remove</small>
-                                </a>
-                            </div>
-                            <div className='col'>
-
-                            </div><a
-                            onClick={() => {openVacancyApplicationsPage()}}
-                            id='a-change-status' className='link-primary'>
-                            <small>Заявки</small>
-                        </a>
+                                </button>
+                            {/*</div>*/}
+                            <button
+                                onClick={() => {
+                                    openVacancyApplicationsPage()
+                                }}
+                                id='a-change-status' className='btn btn-primary m-1'>
+                                <small>Заявки</small>
+                            </button>
                         </div>
                 }
             </td>

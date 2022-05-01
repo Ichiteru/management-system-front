@@ -25,7 +25,7 @@ const VacanciesPage = () => {
     const [vacancies, setVacancies] = useState([])
     const [fetchVacancies, isLoading, error] = useFetching(async (role, search, page, limit) => {
         let response = await VacancyService.getAll(role, search, page, limit);
-        setTotalPages(getPageCount(response.headers["total-count"], limit))
+        setTotalPages(response.headers["total-count"], limit)
         setVacancies(response.data);
     })
 

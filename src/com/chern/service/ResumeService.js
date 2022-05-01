@@ -22,6 +22,17 @@ export default class ResumeService {
         return axios(config)
     }
 
+    static async getById(id){
+        config = {
+            method: 'get',
+            url: MS_API_URL + '/resumes/' + id,
+            headers: {
+                Authorization: sessionStorage.getItem(TOKEN_KEY)
+            }
+        }
+        return axios(config)
+    }
+
     static async deleteById(id){
         config = {
             method: 'delete',

@@ -26,6 +26,29 @@ export default class UserService {
         return axios(config)
     }
 
+    static async getProfile() {
+        config = {
+            method: 'get',
+            url: MS_API_URL + '/users/profile',
+            headers: {
+                Authorization: sessionStorage.getItem(TOKEN_KEY)
+            }
+        }
+        return axios(config)
+    }
+
+    static async updateProfile(profile) {
+        config = {
+            method: 'put',
+            url: MS_API_URL + '/users/profile',
+            headers: {
+                Authorization: sessionStorage.getItem(TOKEN_KEY)
+            },
+            data: profile
+        }
+        return axios(config)
+    }
+
     static async changeStatus(id, status) {
         console.log(status)
         config = {
