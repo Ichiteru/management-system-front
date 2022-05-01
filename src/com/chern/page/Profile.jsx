@@ -138,7 +138,7 @@ const Profile = () => {
                                 onClick={(e) => {
                                     updateProfile(e)
                                 }}
-                        >Save Profile
+                        >Сохранить
                         </button>
                     </div>
                 </div>

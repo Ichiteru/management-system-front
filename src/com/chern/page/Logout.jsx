@@ -20,13 +20,13 @@ const Logout = ({setRole}) => {
             <div className="card card-container">
                     <div id="card-body">
                         <div className="card-img">
-                            <h1 className='text-center'>Are you sure you want to exit?</h1>
+                            <h1 className='text-center'>Подтвердить выход</h1>
                             <img style={{width: 300}}
                                  src="https://static.vecteezy.com/system/resources/previews/004/637/632/original/logout-icon-vector.jpg"
                                  alt="User Icon"/>
                         </div>
                             <div className="row justify-content-center mb-2">
-                                <button type="button" onClick={logout} className="btn btn-primary">Log out</button>
+                                <button type="button" onClick={logout} className="btn btn-primary">Выйти</button>
                             </div>
                     </div>
             </div>

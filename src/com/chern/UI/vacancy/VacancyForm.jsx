@@ -30,12 +30,14 @@ const VacancyForm = ({setChange, scope, setSuccessMsg, setModal, id}) => {
                 setRequirements([...temp.requirements])
                 // setVacancy(resp.data)
             })
-            ResumeService.getAll(1, 100, '').then(resp => {
-                setEmployeeResumes(resp.data)
-                setFormError(false)
-            }).catch(err => {
-                setFormError('Ошибка при загрузке резюме')
-            })
+            if (scope == VIEW_SCOPE){
+                ResumeService.getAll(1, 100, '').then(resp => {
+                    setEmployeeResumes(resp.data)
+                    setFormError(false)
+                }).catch(err => {
+                    setFormError('Ошибка при загрузке резюме')
+                })
+            }
         }
     }, [scope, id])
 

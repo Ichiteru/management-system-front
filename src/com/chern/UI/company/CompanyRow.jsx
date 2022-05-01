@@ -12,7 +12,7 @@ const CompanyRow = (props) => {
                 <button
                     onClick={() => props.delete(props.company.id)}
                     className='btn btn-danger'>
-                    <small>Delete</small>
+                    <small>Удалить</small>
                 </button>
             </td>
         </tr>

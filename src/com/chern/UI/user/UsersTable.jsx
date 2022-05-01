@@ -8,10 +8,10 @@ const UsersTable = ({users, changeStatus}) => {
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Full name</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Status</th>
+                <th scope="col">Полное имя</th>
+                <th scope="col">Имя пользователя</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Статус</th>
                 <th scope="col"></th>
             </tr>
             </thead>

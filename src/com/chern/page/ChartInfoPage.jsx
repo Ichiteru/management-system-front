@@ -10,7 +10,6 @@ const ChartInfoPage = () => {
     const [opts, setOpts] = useState({})
     const [fetchChart, isLoading, error] = useFetching(async ()  => {
         let response = await VacancyService.getChart();
-        setChartData(fullChartData(response.data))
         setOpts({
             title: {
                 text: "Заявки на вакансии"
@@ -18,17 +17,16 @@ const ChartInfoPage = () => {
             data: [
                 {
                     type: "column",
-                    dataPoints: chartData
+                    dataPoints: fullChartData(response.data)
                 }
             ]
         })
     })
 
     function fullChartData(opts){
-        let temp = []
-        let count = 0;
+        let temp = [];
         for (let vacancy in opts){
-            setChartData([...chartData, {label: vacancy, y: opts[vacancy]}])
+            temp = [...temp, {label: vacancy, y: opts[vacancy]}]
         }
         return temp
     }

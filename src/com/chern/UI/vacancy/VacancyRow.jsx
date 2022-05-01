@@ -23,13 +23,13 @@ const VacancyRow = (props) => {
             <td scope="col">
                 {
                     props.role == 'ROLE_EMPLOYEE' ?
-                        <a
+                        <button
                             onClick={() => {
                                 props.view(props.vacancy.id)
                             }}
-                            id='a-change-status' className='link-primary'>
-                            <small>Send application</small>
-                        </a>
+                            id='a-change-status' className='btn btn-success'>
+                            <small>Отправить заявку</small>
+                        </button>
                         :
                         <div className='row row-cols-3'>
                             {/*<div className="col">*/}
@@ -38,7 +38,7 @@ const VacancyRow = (props) => {
                                         props.openUpdate(props.vacancy.id)
                                     }}
                                     id='a-change-status' className='btn btn-success m-1'>
-                                    <small>Update</small>
+                                    <small>Обновить</small>
                                 </button>
                             {/*</div>*/}
                             {/*<div className="col-6">*/}
@@ -47,7 +47,7 @@ const VacancyRow = (props) => {
                                         props.remove(props.vacancy.id)
                                     }}
                                     id='a-change-status' className='btn btn-danger m-1'>
-                                    <small>Remove</small>
+                                    <small>Удалить</small>
                                 </button>
                             {/*</div>*/}
                             <button

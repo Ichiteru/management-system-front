@@ -13,8 +13,8 @@ const UserRow = (props) => {
             <td scope="col">
                 <a
                     onClick={() => props.changeStatus(props.user.id, props.user.status)}
-                    id='a-change-status' className='link-primary'>
-                    <small>Change status</small>
+                    id='a-change-status' className='btn link-primary'>
+                    <small>Изменить статус</small>
                 </a>
             </td>
         </tr>

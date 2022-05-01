@@ -21,7 +21,7 @@ export const privateRoutes = [
 export default function getDefaultRoleRoute(role){
     switch (role){
         case 'ROLE_SYSTEM_ADMIN' : return '/companies'
-        case 'ROLE_MANAGER' : return '/company'
+        case 'ROLE_MANAGER' : return '/vacancies'
         case 'ROLE_EMPLOYEE' : return '/profile'
     }
 }
