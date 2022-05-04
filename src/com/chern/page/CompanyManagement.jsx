@@ -36,7 +36,7 @@ const CompanyManagement = () => {
             setDeleteError(false)
             setCompanies(companies.filter(c => c.id !== id ))
         }).catch(err => {
-            setMessage(false);
+            setMessage( false);
             setDeleteError("Ошибка при удалении. Попробуйте снова.")
         });
     }

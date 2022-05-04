@@ -11,6 +11,7 @@ const ChartInfoPage = () => {
     const [fetchChart, isLoading, error] = useFetching(async ()  => {
         let response = await VacancyService.getChart();
         setOpts({
+            exportEnabled: true,
             title: {
                 text: "Заявки на вакансии"
             },

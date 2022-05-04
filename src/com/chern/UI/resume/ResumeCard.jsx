@@ -29,11 +29,11 @@ const ResumeCard = (props) => {
                     <a href="#" className="card-link link-danger"
                        style={{float: 'right'}}
                        onClick={(e) => {remove(e)}}
-                    >Remove</a>
+                    >Удалить</a>
                     <a href="#" className="card-link link-primary"
                        style={{float: 'left'}}
                        onClick={(e) => {update(e)}}
-                    >Update</a>
+                    >Обновить</a>
                 </div>
             </div>
         </div>
